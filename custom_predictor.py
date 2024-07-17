@@ -7,13 +7,13 @@ from utils.hyperparameters import *
 from config import *
 from models.builder import DomainAdaptationModel
 from models.deeplabv3plus import DeepLabV3Plus
-
+from transunet import TransUNet
 
 class Predictor():
 
     def __init__(self,
                  model = None,
-                 patch_size: int = 512,
+                 patch_size: int = 256,
                  channels: int = 1,
                  num_class: int = 2,
                  output_stride: int = 8,
@@ -48,11 +48,10 @@ class Predictor():
                 )
         
         else:
-            empty_model = DeepLabV3Plus(
-                input_shape = (self.patch_size, self.patch_size, self.channels),
+            empty_model = TransUNet(
+                input_shape = self.patch_size,
                 num_class = self.num_class,
-                output_stride = self.output_stride,
-                skip_conn = self.skip_conn
+                pretrain=True
                 )
         
         return empty_model

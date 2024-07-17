@@ -21,13 +21,13 @@ from utils.metrics import f1, AveragePrecision
 from models.builder import DomainAdaptationModel
 from models.deeplabv3plus import DeepLabV3Plus
 from logger import TensorBoardLogger
-
+from transunet import TransUNet
 from config import LOGS_FOLDER
 
 
 class Trainer():
 
-    def __init__(self, patch_size: int = 512, channels: int = 1, num_class: int = 2, output_stride = 8, skip_conn: bool = True, domain_adaptation: bool = False,
+    def __init__(self, patch_size: int = 256, channels: int = 1, num_class: int = 2, output_stride = 8, skip_conn: bool = True, domain_adaptation: bool = False,
                  units: int = 1024, name: str = ''):
 
         self.name = name if name == '' else f'_{name}'
@@ -165,11 +165,10 @@ class Trainer():
                 skip_conn = self.skip_conn
                 )
         else:
-            empty_model = DeepLabV3Plus(
-                input_shape = (self.patch_size, self.patch_size, self.channels),
+            empty_model = TransUNet(
+                input_shape = self.patch_size,
                 num_class = self.num_class,
-                output_stride = self.output_stride,
-                skip_conn = self.skip_conn
+                pretrain=True
                 )
         
         return empty_model

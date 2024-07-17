@@ -8,9 +8,9 @@ CURRENT_PATH = os.path.realpath(__file__)
 BASE_FOLDER = get_parent_folder_path(CURRENT_PATH)
 
 
-PROCESSED_FOLDER = f'{BASE_FOLDER}/DANN/processed_images'
-RESULTS_FOLDER = f'{BASE_FOLDER}/DANN/results'
-LOGS_FOLDER = f'{BASE_FOLDER}/DANN/logs'
+PROCESSED_FOLDER = f'{BASE_FOLDER}/MineralSegmentation/processed_images'
+RESULTS_FOLDER = f'{BASE_FOLDER}/MineralSegmentation/results'
+LOGS_FOLDER = f'{BASE_FOLDER}/MineralSegmentation/logs'
 
 PATH_TO_FE19_DATASET_RLM = f'{BASE_FOLDER}/Fe19/Reflected_Light_Microscopy'
 PATH_TO_FE120_DATASET_RLM = f'{BASE_FOLDER}/Fe120/Reflected_Light_Microscopy'
