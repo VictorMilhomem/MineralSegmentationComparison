@@ -810,6 +810,7 @@ class Trainer():
             self.logger.write_scalar('segmentation_writer', 'learning_rate', lr, epoch + 1)
 
             print('Start training...')
+            print(f'num_batches_train: {self.num_batches_train}')
             for batch in range(self.num_batches_train):
 
                 print(f'Batch {batch + 1} of {self.num_batches_train}')
@@ -834,7 +835,6 @@ class Trainer():
                 loss_global_train += float(loss_train)
 
             # ===== LOSS =====
-            print(f'num_batches_train: {self.num_batches_train,}')
             self._persist_to_history(loss_global_train, lambda x: x / self.num_batches_train, self.loss_segmentation_train_history)
             
 
