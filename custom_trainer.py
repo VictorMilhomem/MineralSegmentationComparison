@@ -834,7 +834,9 @@ class Trainer():
                 loss_global_train += float(loss_train)
 
             # ===== LOSS =====
+            print(f'num_batches_train: {self.num_batches_train,}')
             self._persist_to_history(loss_global_train, lambda x: x / self.num_batches_train, self.loss_segmentation_train_history)
+            
 
             # ===== ACCURACY =====
             self._persist_to_history(self.acc_segmentation, lambda x: float(x.result()), self.acc_segmentation_train_history)
