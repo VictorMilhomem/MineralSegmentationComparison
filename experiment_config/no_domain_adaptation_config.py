@@ -21,5 +21,5 @@ NO_DOMAIN_ADAPTATION_GLOBAL_PARAMS = {
     'patience': 10,
     'progress_threshold': 0.01,
     'lr_config': {'learning_rate': 0.001},
-    'optimizer_config': {'type': 'Adam'}
+    'optimizer_config': {'name': 'adam'}
 }
