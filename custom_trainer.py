@@ -167,7 +167,7 @@ class Trainer():
         else:
             empty_model = TransUNet(
                 image_size= self.patch_size,
-                num_class = self.num_class,
+                num_classes = self.num_class,
                 pretrain=True
                 )
         
