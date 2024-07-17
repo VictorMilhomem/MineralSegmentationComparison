@@ -422,7 +422,10 @@ class Trainer():
         self.num_images = num_images
         self.rotate = rotate
         self.flip = flip
-    
+
+        print(self.patches_dir)
+        print(self.batch_size)
+        print(self.num_images)
         # loading dataset
         data_dirs = self._load_file_names(self.patches_dir)
 
@@ -810,7 +813,6 @@ class Trainer():
             self.logger.write_scalar('segmentation_writer', 'learning_rate', lr, epoch + 1)
 
             print('Start training...')
-            print(f'num_batches_train: {self.num_batches_train}')
             for batch in range(self.num_batches_train):
 
                 print(f'Batch {batch + 1} of {self.num_batches_train}')
