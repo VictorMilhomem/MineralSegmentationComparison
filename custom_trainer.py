@@ -423,9 +423,6 @@ class Trainer():
         self.rotate = rotate
         self.flip = flip
 
-        print(self.patches_dir)
-        print(self.batch_size)
-        print(self.num_images)
         # loading dataset
         data_dirs = self._load_file_names(self.patches_dir)
 
