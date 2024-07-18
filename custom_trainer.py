@@ -820,11 +820,11 @@ class Trainer():
                 batch_images = batch_images.astype(np.float32) # set np.float32 to reduce memory usage
 
 
-                x_train = batch_images[ :, :, :, : self.channels]
-                x_train = np.repeat(batch_images[:, :, :, :self.channels], 3, axis=-1)
+                x_train_raw = batch_images[ :, :, :, : self.channels]
+                x_train = np.repeat(x_train_raw[:, :, :, :self.channels], 3, axis=-1)
                 y_train = batch_images[ :, :, :, self.channels :]
 
-                y_train = y_train[..., :self.model.output_shape[-1]]
+                #y_train = y_train[..., :self.model.output_shape[-1]]
 
                 loss_train, y_pred = self._training_step(
                     model = self.model,
