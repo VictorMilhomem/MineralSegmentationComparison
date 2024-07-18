@@ -38,10 +38,11 @@ def TransUNet(image_size=224,
                 input_channels=3):
     # Tranformer Encoder
     assert image_size % patch_size == 0, "image_size must be a multiple of patch_size"
-    x = tf.keras.layers.Input(shape=(image_size, image_size, input_channels))
-
     if input_channels == 1:
         x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)
+    x = tf.keras.layers.Input(shape=(image_size, image_size, input_channels))
+
+    
 
     # Embedding
     if hybrid:
@@ -50,7 +51,7 @@ def TransUNet(image_size=224,
         if patch_size == 0:
             patch_size = 1
 
-        resnet50v2, features = resnet_embeddings(x, image_size=image_size, n_skip=n_skip, pretrain=pretrain, input_channels=input_channels)
+        resnet50v2, features = resnet_embeddings(x, image_size=image_size, n_skip=n_skip, pretrain=pretrain, input_channels=3)
         if freeze_enc_cnn:
             resnet50v2.trainable = False
         y = resnet50v2.get_layer("conv4_block6_preact_relu").output
