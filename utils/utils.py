@@ -142,7 +142,9 @@ def save_arrays(images: np.ndarray, path_to_folder: str, suffix = '', ext = '.np
 
 def convert_to_onehot_tensor(tensor: np.ndarray, num_class: int):
     onehot_tensor = one_hot(tensor[:, :, :, 0], depth = num_class, axis = -1)
-    return np.asarray(onehot_tensor)
+    ret = onehot_tensor.numpy()
+    print(f'Converted tensor to one-hot tensor with shape {ret.shape}')
+    return ret
 
 
 def save_json(data, file_name: str):
