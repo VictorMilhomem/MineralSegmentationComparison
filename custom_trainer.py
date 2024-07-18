@@ -821,6 +821,7 @@ class Trainer():
 
 
                 x_train = batch_images[ :, :, :, : self.channels]
+                x_train = np.repeat(batch_images[:, :, :, :self.channels], 3, axis=-1)
                 y_train = batch_images[ :, :, :, self.channels :]
 
                 loss_train, y_pred = self._training_step(
