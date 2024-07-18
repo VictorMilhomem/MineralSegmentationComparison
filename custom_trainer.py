@@ -169,7 +169,6 @@ class Trainer():
                 image_size= self.patch_size,
                 num_classes = self.num_class,
                 pretrain=True,
-                input_channels=1
                 )
         
         return empty_model
