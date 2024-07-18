@@ -158,7 +158,7 @@ class ResNetV2(tfk.Model):
 def resnet_embeddings(x, image_size=224, n_skip=3, pretrain=True):
     resnet50v2 = tfk.applications.ResNet50V2(weights='imagenet' if pretrain else None,
                                              include_top=False, 
-                                             input_shape=(image_size, image_size, 3))
+                                             input_shape=(image_size, image_size, 1))
     # resnet50v2.trainable = False
     _ = resnet50v2(x)
     layers = ["conv3_block4_preact_relu",

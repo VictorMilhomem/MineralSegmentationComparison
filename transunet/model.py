@@ -45,11 +45,7 @@ def TransUNet(image_size=224,
     assert image_size % patch_size == 0, "image_size must be a multiple of patch_size"
 
     # Input layer
-    x = tf.keras.layers.Input(shape=(image_size, image_size, 3))
-    
-    # Handling single-channel images by repeating channels if needed
-    if x.shape[-1] == 1:
-        x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)
+    x = tf.keras.layers.Input(shape=(image_size, image_size, 1))
 
     # Embedding
     if hybrid:
