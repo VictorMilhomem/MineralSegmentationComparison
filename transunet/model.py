@@ -19,29 +19,37 @@ def load_pretrained(model, fname='R50+ViT-B_16.npz'):
     local_filepath = tf.keras.utils.get_file(fname, origin, cache_subdir="weights")
     utils.load_weights_numpy(model, local_filepath)
     
+import tensorflow as tf
+from tensorflow.keras import layers as tfkl
+import tensorflow.keras as tfk
+import math
+
 def TransUNet(image_size=224, 
-                patch_size=16, 
-                hybrid=True,
-                grid=(14,14), 
-                hidden_size=768,
-                n_layers=12,
-                n_heads=12,
-                mlp_dim=3072,
-                dropout=0.1,
-                decoder_channels=[256,128,64,16],
-                n_skip=3,
-                num_classes=3,
-                final_act='sigmoid',
-                pretrain=True,
-                freeze_enc_cnn=True,
-                name='TransUNet'):
-    # Tranformer Encoder
+              patch_size=16, 
+              hybrid=True,
+              grid=(14,14), 
+              hidden_size=768,
+              n_layers=12,
+              n_heads=12,
+              mlp_dim=3072,
+              dropout=0.1,
+              decoder_channels=[256,128,64,16],
+              n_skip=3,
+              num_classes=3,
+              final_act='sigmoid',
+              pretrain=True,
+              freeze_enc_cnn=True,
+              name='TransUNet'):
+    
+    # Ensure the image size is a multiple of the patch size
     assert image_size % patch_size == 0, "image_size must be a multiple of patch_size"
 
+    # Input layer
     x = tf.keras.layers.Input(shape=(image_size, image_size, 3))
     
-    x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)
-    
+    # Handling single-channel images by repeating channels if needed
+    if x.shape[-1] == 1:
+        x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)
 
     # Embedding
     if hybrid:
@@ -100,10 +108,11 @@ def TransUNet(image_size=224,
     y = decoder_layers.SegmentationHead(num_classes=num_classes, final_act=final_act)(y)
 
     # Build Model
-    model =  tfk.models.Model(inputs=x, outputs=y, name=name)
+    model = tfk.models.Model(inputs=x, outputs=y, name=name)
     
     # Load Pretrain Weights
     if pretrain:
         load_pretrained(model)
         
     return model
+
