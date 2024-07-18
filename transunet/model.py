@@ -47,7 +47,7 @@ def TransUNet(image_size=224,
     # Input layer
     x = tf.keras.layers.Input(shape=(image_size, image_size, 1))
 
-    x = tf.keras.layers.Lambda(lambda x: tf.image.grayscale_to_rgb(x))(input_img)
+    x = tf.keras.layers.Lambda(lambda x: tf.image.grayscale_to_rgb(x))(x)
 
     # Embedding
     if hybrid:
