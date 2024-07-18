@@ -34,14 +34,13 @@ def TransUNet(image_size=224,
                 final_act='sigmoid',
                 pretrain=True,
                 freeze_enc_cnn=True,
-                name='TransUNet',
-                input_channels=3):
+                name='TransUNet'):
     # Tranformer Encoder
     assert image_size % patch_size == 0, "image_size must be a multiple of patch_size"
 
-    x = tf.keras.layers.Input(shape=(image_size, image_size, input_channels))
-    """if input_channels == 1:
-        x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)"""
+    x = tf.keras.layers.Input(shape=(image_size, image_size, 3))
+    
+    x = tf.keras.layers.Lambda(lambda x: tf.repeat(x, repeats=3, axis=-1))(x)
     
 
     # Embedding
