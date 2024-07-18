@@ -819,10 +819,6 @@ class Trainer():
                 batch_images = np.asarray([load_array(batch_file, verbose = False) for batch_file in batch_files])
                 batch_images = batch_images.astype(np.float32) # set np.float32 to reduce memory usage
 
-                # Check the number of channels and convert if necessary
-                if batch_images.shape[-1] == 1:
-                    # Convert single-channel grayscale images to 3-channel RGB by repeating the grayscale channel
-                    batch_images = np.repeat(batch_images, 3, axis=-1)
 
                 x_train = batch_images[ :, :, :, : self.channels]
                 y_train = batch_images[ :, :, :, self.channels :]
