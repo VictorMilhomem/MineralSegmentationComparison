@@ -882,6 +882,8 @@ class Trainer():
                 x_val = batch_val_images[:, :, :, : self.channels]
                 y_val = batch_val_images[:, :, :, self.channels :]
 
+                x_val = np.repeat(batch_val_images[:, :, :, :self.channels], 3, axis=-1)
+                y_val = y_val[..., :self.model.output_shape[-1]]
                 y_pred = self.model(x_val)
 
                 loss_val = self.loss_function(y_val, y_pred)
