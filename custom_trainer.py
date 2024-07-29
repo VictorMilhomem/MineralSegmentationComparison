@@ -21,6 +21,7 @@ from utils.metrics import f1, AveragePrecision
 from models.builder import DomainAdaptationModel
 from models.deeplabv3plus import DeepLabV3Plus
 from logger import TensorBoardLogger
+from transunet import TransUNet
 from config import LOGS_FOLDER
 
 
