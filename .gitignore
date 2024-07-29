@@ -6,3 +6,6 @@ __pycache__
 results
 logs
 training_images
+processed_images.zip
+results.zip
+results_old.zip

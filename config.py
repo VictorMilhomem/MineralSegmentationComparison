@@ -36,14 +36,24 @@ PATH_TO_FOLDER = {
         'RLM': PATH_TO_CU_DATASET_RLM,
         'MASK': PATH_TO_CU_DATASET_MASK}}
 
+"""
 NUM_IMAGES = {
         'Fe19': 19,
         'Fe120': 120,
         'FeM': 81,
         'Cu': 121}
 
+"""
+
+
+NUM_IMAGES = {
+        'Fe19': 19,
+        'Fe120': 19,
+        'FeM': 39,
+        'Cu': 39}
+
 TEST_INDEX = {
         'Fe19': [0, 14, 5, 17],
-        'Fe120': [108, 45, 32, 117],
-        'FeM': [73, 72, 75, 63],
-        'Cu': [119, 46, 65, 115]}
+        'Fe120': [0, 14, 5, 17],
+        'FeM': [35, 3, 12, 21],
+        'Cu': [20, 32, 1, 7]}
